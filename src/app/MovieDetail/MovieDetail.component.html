@@ -1,0 +1,79 @@
+<form [formGroup]="addMovieForm" (ngSubmit)="addMovie()">
+  <h2 class="text-center text-primary">Add Movie</h2>
+  <hr />
+
+  <div class="form-group">
+    <input
+      type="text"
+      [ngClass]="{
+        'is-invalid':
+        addMovieForm.get('title').errors &&
+        addMovieForm.get('title').touched
+      }"
+      class="form-control"
+      formControlName="title"
+      placeholder="title"
+    />
+    <div class="invalid-feedback">Please choose a title</div>
+  </div>
+
+  <div class="form-group">
+    <input
+      [ngClass]="{
+        'is-invalid':
+        addMovieForm.get('name').errors &&
+        addMovieForm.get('name').touched
+      }"
+      class="form-control"
+      placeholder="Name"
+      formControlName="name"
+    />
+    <div
+      class="invalid-feedback"
+      *ngIf="
+      addMovieForm.get('name').touched &&
+      addMovieForm.get('name').hasError('required')
+      "
+    >
+      Name as is required
+    </div>
+  </div>
+
+  <div class="form-group">
+    <input
+      
+      class="form-control"
+      placeholder="Description"
+      formControlName="description"
+      type="text"
+    />
+    
+  </div>
+
+  <div class="form-group">
+    <input
+      [ngClass]="{
+        'is-invalid':
+        addMovieForm.get('contributor').errors && addMovieForm.get('contributor').touched
+      }"
+      class="form-control"
+      placeholder="Contributor"
+      formControlName="contributor"
+    />
+    <div
+      class="invalid-feedback"
+      *ngIf="
+      addMovieForm.get('contributor').touched &&
+      addMovieForm.get('contributor').hasError('required')
+      "
+    >
+    Contributor is required
+    </div>
+  </div>
+
+  
+  <div class="form-group text-center">
+    <button class="btn btn-success" type="submit" [disabled]="!addMovieForm.valid">Add Movie</button>
+    
+  </div>
+</form>
